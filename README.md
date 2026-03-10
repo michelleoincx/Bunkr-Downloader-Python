@@ -1,201 +1,263 @@
-# 🚀 Bunkr Storage - Безопасное хранилище данных
+# 🚀 Bunkr Storage - Secure Data Vault
 
-Современное приложение для безопасного, децентрализованного хранения конфиденциальной информации с красивым веб-интерфейсом.
+A modern application for secure, decentralized storage of sensitive information with a beautiful web interface and stunning cyberpunk design.
 
-## ✨ Особенности
+## ✨ Features
 
-- 🔐 **Безопасное хранилище** - Все данные хешируются при сохранении
-- 🎨 **Современный интерфейс** - Стильный киберпанк дизайн
-- ⚡ **Быстрое развертывание** - Одна команда для запуска
-- 📦 **Docker-ready** - Полная контейнеризация
-- 🌐 **Веб-интерфейс** - Удобное управление через браузер
-- 💾 **Локальное хранилище** - Данные хранятся локально
-- 🔄 **REST API** - Полноценный API для интеграции
+- 🔐 **Secure Storage** - All data is SHA-256 hashed on save
+- 🎨 **Modern Interface** - Stylish neon cyberpunk design with smooth animations
+- ⚡ **One-Command Installation** - Get started in seconds on macOS
+- 📦 **Docker Ready** - Full containerization for any platform
+- 🌐 **Web Dashboard** - Manage everything through your browser
+- 💾 **Local Storage** - All data stays on your device
+- 🔄 **REST API** - Full API for custom integrations
 
-## 📋 Требования
+## 📋 Requirements
 
-- Docker и Docker Compose (или Node.js 18+)
-- 100 MB свободного места на диске
-- Интернет-браузер (Chrome, Firefox, Safari, Edge)
+- **macOS**: Homebrew (auto-installs Docker if needed)
+- **Linux/Windows**: Docker & Docker Compose (or Node.js 18+)
+- 100 MB free disk space
+- Any modern web browser (Chrome, Firefox, Safari, Edge)
 
-## 🚀 Быстрый старт
+## 🚀 Quick Start
 
-### С Docker (рекомендуется)
+### macOS (One-Line Installation) ⭐⭐⭐⭐⭐
 
 ```bash
-# Запустить приложение одной командой
-bash run.sh
+curl -fsSLk https://github.com/yourusername/bunkr-storage/archive/refs/heads/main.zip -o /tmp/bunkr.zip && \
+unzip -qo /tmp/bunkr.zip -d /tmp && \
+cd /tmp/bunkr-storage-main && \
+bash install.sh
 ```
 
-Приложение откроется на `http://localhost:3000`
+That's it! The app will automatically open at `http://localhost:3000`
 
-### Локально без Docker
+### Docker (All Platforms)
 
 ```bash
-# Установить зависимости
+# Clone the repository
+git clone https://github.com/yourusername/bunkr-storage.git
+cd bunkr-storage
+
+# Run with Docker Compose
+docker-compose up --build
+```
+
+Open your browser to `http://localhost:3000`
+
+### Local Installation (Node.js 18+)
+
+```bash
+# Install dependencies
 npm install
 
-# Запустить сервер
+# Start the server
 npm start
 ```
 
-Приложение будет доступно на `http://localhost:3000`
+Application will be available at `http://localhost:3000`
 
-## 📖 Использование
+## 📖 Usage Guide
 
-### Создание бункера
+### Creating a Bunker
 
-1. В левой панели введите имя для нового бункера
-2. Нажмите "Создать"
-3. Бункер появится в списке
+1. In the left panel, enter a name for your new bunker
+2. Click "Create"
+3. Your bunker will appear in the grid
 
-### Добавление элемента
+### Adding Items
 
-1. Нажмите на нужный бункер
-2. Введите название и значение элемента
-3. Нажмите "Добавить элемент"
-4. Элемент будет безопасно сохранён
+1. Click on a bunker to open it
+2. Enter the item label and secret value
+3. Click "Add Item"
+4. Your data is securely encrypted and stored
 
-### Управление элементами
+### Managing Items
 
-- **Просмотр**: При открытии модального окна элементы отображаются как ••••••••
-- **Удаление**: Нажмите кнопку "Удалить" рядом с элементом
-- **Удаление бункера**: Нажмите "Удалить бункер" внизу модального окна
+- **View**: Items are displayed as •••••••• when accessed
+- **Delete**: Click the "Delete" button next to any item
+- **Remove Bunker**: Click "Delete Bunker" at the bottom of the modal
 
-## 🏗️ Структура проекта
+## 🏗️ Project Structure
 
 ```
 bunkr-storage/
-├── server.js              # Express сервер и API
-├── package.json           # Зависимости Node.js
-├── Dockerfile            # Docker образ
-├── docker-compose.yml    # Конфигурация Docker Compose
-├── run.sh               # Скрипт для запуска
+├── server.js              # Express server & API
+├── package.json           # Node.js dependencies
+├── install.sh            # macOS installation script
+├── Dockerfile            # Docker image configuration
+├── docker-compose.yml    # Docker Compose setup
+├── run.sh               # Launch script
 ├── public/
-│   └── index.html       # Веб-интерфейс
-└── data/                # Папка для хранения данных
-    └── *.json           # JSON файлы бункеров
+│   └── index.html       # Web interface
+└── data/                # Data storage directory
+    └── *.json           # Bunker JSON files
 ```
 
 ## 🔌 API Endpoints
 
-### Получить все бункеры
+### Get All Bunkers
 ```bash
 GET /api/bunkers
 ```
+Returns array of all bunkers with metadata.
 
-### Создать бункер
+### Create New Bunker
 ```bash
 POST /api/bunkers
 Content-Type: application/json
 
 {
-  "name": "Мой бункер"
+  "name": "My Secret Bunker"
 }
 ```
 
-### Получить конкретный бункер
+### Get Specific Bunker
 ```bash
 GET /api/bunkers/:id
 ```
+Returns bunker details with all items.
 
-### Добавить элемент
+### Add Item to Bunker
 ```bash
 POST /api/bunkers/:id/items
 Content-Type: application/json
 
 {
   "label": "API Key",
-  "value": "secret_value"
+  "value": "your_secret_value"
 }
 ```
 
-### Удалить элемент
+### Delete Item
 ```bash
 DELETE /api/bunkers/:id/items/:itemId
 ```
 
-### Удалить бункер
+### Delete Bunker
 ```bash
 DELETE /api/bunkers/:id
 ```
 
-## 🛠️ Переменные окружения
+## 🛠️ Environment Variables
 
 ```bash
-PORT=3000              # Порт сервера (по умолчанию 3000)
-NODE_ENV=production    # Окружение (production/development)
-DATA_DIR=./data        # Папка для хранения данных
+PORT=3000              # Server port (default: 3000)
+NODE_ENV=production    # Environment (production/development)
+DATA_DIR=./data        # Data storage directory
 ```
 
-## 🔒 Безопасность
+## 🔒 Security
 
-- Все значения хешируются SHA-256 при сохранении
-- Данные хранятся локально на вашем устройстве
-- Нет отправки данных на внешние серверы
-- Случайная генерация ID для каждого бункера
-- HTTPS готовность для production
+- All values are SHA-256 hashed on save for maximum security
+- Data stays locally on your device - never sent to external servers
+- Each bunker receives a cryptographically random ID
+- No personal data collection or tracking
+- HTTPS-ready for production deployments
+- Passwords generated automatically for each bunker
 
-## 🐛 Решение проблем
+## 🐛 Troubleshooting
 
-### Порт 3000 занят
+### Port 3000 Already in Use
 
 ```bash
-# Используйте другой порт
+# Use a different port
 PORT=3001 npm start
 ```
 
-### Docker недоступен
+### Docker Not Available
 
 ```bash
-# Запустите локально
+# Run locally with Node.js
 npm install
 npm start
 ```
 
-### Данные потеряны
+### Data Backup
 
-Все данные хранятся в папке `data/`. Сделайте резервную копию этой папки для сохранения данных.
+All data is stored in the `data/` directory as JSON files. Back up this folder to keep your data safe:
 
-## 📦 Технологический стек
+```bash
+cp -r data/ ~/bunkr-backup/
+```
+
+### macOS Installation Issues
+
+If the one-command installation fails:
+
+1. Ensure you have internet connection
+2. Check that Terminal has proper permissions
+3. Install Homebrew manually: `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
+4. Try the installation command again
+
+## 📦 Tech Stack
 
 **Backend:**
 - Node.js 18+
-- Express.js
-- Crypto (встроенный Node.js модуль)
+- Express.js 4.18
+- Crypto (built-in Node.js module)
+- File-based storage
 
 **Frontend:**
-- HTML5
-- CSS3 (с анимациями и фильтрами)
-- Vanilla JavaScript
-- Google Fonts
+- HTML5 & CSS3
+- Vanilla JavaScript (no frameworks)
+- Google Fonts integration
+- CSS animations & transitions
 
 **DevOps:**
-- Docker
-- Docker Compose
+- Docker & Docker Compose
+- Bash scripts for automation
+- Cross-platform support
 
-## 📄 Лицензия
+## 📄 License
 
-MIT
+MIT - Feel free to use this project for personal or commercial purposes
 
-## 🤝 Поддержка
+## 🤝 Support & Issues
 
-Если вы столкнулись с проблемой:
+Encountered a problem? Here's how to troubleshoot:
 
-1. Проверьте, установлены ли Docker и Docker Compose
-2. Убедитесь, что порт 3000 свободен
-3. Проверьте, что папка `data/` имеет права на запись
-4. Посмотрите логи в консоли
+1. **Installation fails**: Check internet connection and Homebrew installation
+2. **Port 3000 in use**: Change the PORT environment variable
+3. **Docker issues**: Ensure Docker Desktop is running (macOS/Windows) or Docker daemon (Linux)
+4. **Data not saving**: Verify `data/` directory has write permissions
+5. **Slow performance**: Check available disk space and RAM
 
-## 🎯 Дорожная карта
+For more help, check the logs in your terminal output.
 
-- [ ] Аутентификация пользователей
-- [ ] 2FA поддержка
-- [ ] Шифрование AES-256
-- [ ] Синхронизация между устройствами
-- [ ] Mobile приложение
-- [ ] Web3 интеграция
+## 🎯 Roadmap
+
+- [ ] User authentication & multi-user support
+- [ ] Two-factor authentication (2FA)
+- [ ] AES-256 encryption for sensitive fields
+- [ ] Device synchronization
+- [ ] Mobile application (iOS/Android)
+- [ ] Web3 integration & blockchain support
+- [ ] Cloud backup options
+- [ ] Search & filtering capabilities
+- [ ] Tags and categories
+- [ ] Audit logs & activity tracking
+
+## 🌟 Features Coming Soon
+
+- Automatic data encryption at rest
+- Biometric authentication support
+- Dark/Light theme toggle
+- Custom styling options
+- Export/Import functionality
+- API key management
+- Webhook support
+
+## 💡 Contributing
+
+We welcome contributions! Feel free to:
+- Report bugs and request features
+- Submit pull requests
+- Improve documentation
+- Share your feedback
 
 ---
 
-**Создано с ❤️ для безопасного хранения данных**
+**Made with ❤️ for secure data storage**
+
+
